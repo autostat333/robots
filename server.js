@@ -29,8 +29,14 @@ var io = require('socket.io')(server);
 var db = '';
 mongo.connect('mongodb://'+config.HOST+':27017/'+config.DATABASE,function(err,db_)
 	{
-	db = db_;
-	initControllers();
+	if (err){console.log('Error establish connection to DB');return false;};
+	db_.admin().authenticate(config['DB_USER_NAME'],config['DB_USER_PASS'],function(err)
+		{
+		if (err){console.log('Error authenticate admin user');return false;}
+		console.log('Connected to MongoDB successfully!');
+		db = db_;
+		initControllers();
+		})
 	})
 
 
@@ -304,6 +310,6 @@ function emit()
 		});
 	}
 
-server.listen(3001);
+server.listen(config['PORT']);
 //app.listen(config.PORT,config.HOST);
 
