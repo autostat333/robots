@@ -1,0 +1,64 @@
+#my adds
+/node_modules
+#/bower_components
+/app/dist
+/dist
+/.sass-cache
+/ExampleRobot
+/RobotDok
+
+
+
+config
+
+
+
+server.sublime-workspace
+*.sublime-project
+*.sublime-workspace
+
+
+
+.vs/
+.idea/
+app/.idea
+
+
+
+^.swo
+*.pyo
+*.pyc
+
+
+
+
+
+
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip	
+
+
+
+
+
+
+
+
+# Logs and databases #
+
+######################
+
+*.log
+*.sql
+*.sqlite
