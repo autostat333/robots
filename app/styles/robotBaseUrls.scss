@@ -1,0 +1,31 @@
+.robot_base_urls
+  {
+  position:relative;
+
+
+  .params_container
+    {
+    justify-content:flex-start;
+
+    md-input-container:last-of-type
+      {
+      margin-left:20px;
+      }
+
+    }
+
+  .table
+    {
+    td:nth-child(1), th:nth-child(1)
+      {
+      width:30%;
+      }
+
+    td:nth-child(2), th:nth-child(2)
+      {
+      width:70%;
+      text-align: left;
+      }
+    }
+
+  }

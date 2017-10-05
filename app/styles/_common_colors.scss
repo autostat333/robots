@@ -1,0 +1,19 @@
+
+$primary:#00abc7;
+$secondary:gray;
+$error:red;
+
+
+//$logo_color:#027689;
+$logo_color:white;
+
+
+button.md-primary
+  {
+  background:$primary !important;
+  }
+
+button[disabled]
+  {
+  background:rgba(0,0,0,0.12) !important;
+  }

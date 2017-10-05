@@ -1,0 +1,127 @@
+<div class="rounds_container">
+    <h1>Rounds Main Section</h1>
+
+    <md-input-container class="select_round">
+        <label>Choose one round...</label>
+        <md-select
+            ng-model="selectedRoundId"
+            >
+            <md-option
+                ng-repeat="round in ROUNDS.data"
+                ng-value="round['roundId']"
+                >
+                {{round['dateStr']}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+    <md-button class="md-raised md-primary"
+        ng-click="startRobot()"
+        ng-if="USER.role=='admin'"
+        ng-show="SELECTED_ROUND['status']=='Waiting For Start ROBOT'&&SELECTED_ROUND['roundId']==currentRound['roundId']"
+        >Start ROBOT</md-button>
+
+    <md-button class="md-raised md-primary"
+        ng-click="stopRobot()"
+        ng-show="SELECTED_ROUND['status']!='Waiting For Start ROBOT'&&SELECTED_ROUND['roundId']==currentRound['roundId']"
+        >Stop ROBOT</md-button>
+
+
+    <div class="round_info">
+        <span class="status"
+            ng-class="{'stopped':SELECTED_ROUND.status=='Stopped','finished':SELECTED_ROUND.status=='Finished','error':SELECTED_ROUND.status=='Error'}"
+            >
+            {{SELECTED_ROUND.status}}
+        </span>
+
+
+
+
+        <h3>Round Info:</h3>
+
+
+        <div class="row next_start_time"
+            ng-show="SELECTED_ROUND.nextStartTime"
+            >
+            <div class="title">Next Start Time: </div>
+            <div class="value">{{SELECTED_ROUND.nextStartTime}}</div>
+        </div>
+
+
+        <div class="row">
+            <div class="title">Start Time: </div>
+            <div class="value">{{SELECTED_ROUND.dateStr}}</div>
+        </div>
+
+        <div class="row">
+            <div class="title">Will Start: </div>
+            <div class="value">{{SELECTED_ROUND.futureDateStr}}</div>
+        </div>
+
+        <div class="row">
+            <div class="title">Round ID: </div>
+            <div class="value">{{SELECTED_ROUND.roundId}}</div>
+        </div>
+
+        <div class="row">
+            <div class="title">End Time: </div>
+            <div class="value">{{SELECTED_ROUND.endTime|date:'d MMMM yyyy,  HH:mm'}}</div>
+        </div>
+
+        <div class="row">
+            <div class="title">Duration: </div>
+            <div class="value" ng-show="SELECTED_ROUND.duration">{{SELECTED_ROUND.duration|date:'H':'Z'}} h {{SELECTED_ROUND.duration|date:'m':'Z'}} min</div>
+        </div>
+        <div class="row">
+            <div class="title">Errors: </div>
+            <div class="value">
+                <span ng-show="SELECTED_ROUND.errors.length">{{SELECTED_ROUND.errors.length}}</span>
+                <span ng-show="!SELECTED_ROUND.errors.length">-</span>
+            </div>
+        </div>
+
+
+        <h3>Robots General Statuses:</h3>
+
+        <div class="row robot_stat"
+            ng-repeat="robot in SELECTED_ROUND.ROBOTS"
+            ng-class="{'active':SELECTED_ROBOT['robotName']==robot['robotName']}"
+            >
+            <div class="title"
+                ng-click="selectRobot(robot)"
+                >{{robot['robotName']}}</div>
+            <div class="value">
+                <span class="urls_number">#urls {{robot['finishedUrls']}} / {{robot['totalUrls']}}</span>
+                <span class="errors_number"
+                    ng-show="robot['errors'].length"
+                    >
+                    Errors: {{robot['errors'].length}}
+                </span>
+                <md-progress-linear value="{{robot['percentage']}}"></md-progress-linear>
+            </div>
+
+            <div class="status"
+                ng-show="robot['status']=='Stopped'||robot['status']=='Finished'"
+                ng-class="{'stopped':round.status=='Stopped','finished':robot.status=='Finished'}"
+                >{{robot['status']}}</div>
+            <md-button class="md-raised md-primary" ng-if="$root.USER.role=='admin'" ng-show="robot['status']!='Stopped'||robot['srarus']!='Finished'">Stop</md-button>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="tabs">
+        <md-button ui-sref="main.rounds.urls" ui-sref-active="active">Base Urls</md-button>
+        <md-button ui-sref="main.rounds.parsed" ui-sref-active="active">Urls Parsed</md-button>
+        <md-button ui-sref="main.rounds.errors" ui-sref-active="active">Errors</md-button>
+
+    </div>
+
+
+    <div class="robots_tab_content" ui-view>
+
+    </div>
+
+</div>

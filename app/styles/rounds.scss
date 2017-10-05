@@ -1,0 +1,145 @@
+.rounds_container
+  {
+  padding:50px;
+
+
+  md-input-container.select_round
+    {
+    width:330px;
+    }
+
+  md-content
+    {
+    width:90%;
+    max-width:300px;
+    padding:0px;
+    overflow:visible;
+
+    }
+
+
+
+  .round_info
+    {
+    margin-top:30px;
+    border-bottom:1px solid #e9e9e9;
+    padding-bottom:40px;
+
+
+
+    h3
+      {
+      border-bottom:1px solid #e9e9e9;
+      }
+
+    .status
+      {
+      display:inline-block;
+      color:white;
+      padding:4px 6px 4px 6px;
+      background:orange;
+      font-size:24px;
+      border-radius:5px;
+      }
+    .status.finished{background:green;}
+    .status.error{background:red;}
+    .status.stopped{background:black};
+
+    .row
+      {
+      display:flex;
+      justify-content:flex-start;
+      width:100%;
+      margin-top:15px;
+
+      .title
+        {
+        width:140px;
+        text-align:left;
+        color:gray;
+        }
+      .value
+        {
+        text-align:left;
+        width:350px;
+        }
+      }
+    .row:first-child
+      {
+      margin-top:30px;
+      }
+
+    .row.next_start_time
+      {
+      color:red;
+      }
+
+
+
+
+    .row.robot_stat
+      {
+      align-items:flex-end;
+      opacity:0.8;
+
+      .title
+        {
+
+        text-transform: uppercase;
+        height: auto;
+        line-height:14px;
+        cursor:pointer;
+        }
+
+      .value
+        {
+        text-align:right;
+        }
+
+      .value .urls_number, .value .errors_number
+        {
+        font-size: 12px;
+        color: gray;
+        text-align: right;
+        }
+      .value .errors_number
+        {
+        color:red;
+        }
+
+      .status, button
+        {
+        margin-left:10px;
+        }
+
+      button
+        {
+        margin-top:0px;
+        margin-bottom:0px;
+        }
+
+      .status.stopped
+        {
+        background:lighten(red,20%);
+        }
+      .status.finished
+        {
+        background:lighten(green,20%);
+
+        }
+      }
+    .row.robot_stat:hover
+      {
+      opacity:1;
+      }
+    .row.robot_stat.active
+      {
+      opacity:1;
+      .title{font-weight:bold;color:black;}
+      }
+
+    }
+
+
+
+  }

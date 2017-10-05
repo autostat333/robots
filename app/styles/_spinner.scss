@@ -1,0 +1,206 @@
+myspinner
+	{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	background:rgba(255,255,255,0.0);
+	z-index:-1;
+	visibility:hidden;
+	
+	overflow:hidden;
+	animation-fill-mode:forwards !important;
+	
+	}
+
+
+myspinner.global
+	{
+	position:fixed;
+	}
+
+
+	
+myspinner:before
+	{
+	//font-family:Material Icons;
+	//content:"loop";
+	content:'';
+	background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ0RThFRkE4NzM4MjExRTc5MEJFRDk5QzU2QzkyQjY0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ0RThFRkE5NzM4MjExRTc5MEJFRDk5QzU2QzkyQjY0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDRFOEVGQTY3MzgyMTFFNzkwQkVEOTlDNTZDOTJCNjQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDRFOEVGQTc3MzgyMTFFNzkwQkVEOTlDNTZDOTJCNjQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6HkZoVAAAEYklEQVR42uRbS0gVYRSeqxYRGolShJSVbXppKNkDW4gQRVpCZIKLahGUVrsoXRTVIpCIQF20CCOQAjdF5aK0h+ZKNJMQDHtYUQZRaWlSmZ3TPZduw52Z/zkzdzzwMeidmf8/35z/vOaf0NTUlCEjoVBI5vJcQD4gBzAX8AzQBXgE+MJyA9n5/72BDASlAjCEw1vgF+AiIFX7/F0mYCagw0bxWNgcFAJmAB5zKh/BtiAQ0CKofATZ8UxAqaTyiNvxTECnAgIQW1UTkGDolzzARkX3KlU9OTcIWK7wXrmqJ5ckmQQVwKGA7tNPjm7CdFq2wvnO8wUBoHgVHKoBGaafxgGNgBrAaFTsVyWJyu2T0+GlA54yOKsxwAYa4oAiB4h44mkUoAnwTHgWYKlCApo8iwJg9hcE1nMr4AWgV5HBtniyBEAWAH4KPjWMAkUKnn6vjkSI1QIKJSJGJaAN0Cf5rE7qiNGsBORLjBG5thjwTfAexwA3HJZoNeAtYIUOAlIkCJhNxzeUEY5wXn8aUMtw3m4Ky0U6fMA5ibXbEYP0Bobr+iiNZpo/SAk1UdJ5fECIpaABs0LzvSloAXWAIzH+jy2wnZQvYHRJpojRRWP1+KYlRmb8UdACCnUWGq5EATgRU9yzAvPDGv6+4WfhzASvczz5YUCan+avpCFCxY6T8t1UNxiBI4BIyKXkxqw49vXL/WrBwlHAJjrMh0MmZYnvAS+9WMJSPQ2P3wx5TkCSjWJz4LAXsIUywd8Up5tg0FYjKGKxxvfT6ykrJ4ftr2XSSYgfnSDIGcYwNwlYEygCQHZwZnlDint+nhPA2/JCHA0EASDrBHP9B34mgBz9FepFtGPYtiLghCABY1TZ+ZWAWtN8kYRdsYqhTImGR5rhX1lr+ntldHM3moBBwQE+A975mIA209+d/zVpokwlR3AJ3PG7EwQ5BXhOviDVLgp0CBBQGaQwWMCpfI/X9q0jEzzIqDy2yBYFjgAioYg6OlbK34qspXgnwLYchoqwhJqa2G8fJ0fSDNcMBKUcnvb9gARjmsu0JyBJwvSTqQGaR0Rit+gq4HXcd4QYMqsKapHFihDn4z4MOih/iCFHuOQ2AWiUgETde4TyOLLEKhejAI6FbfnvgFeAMl0E1BuSW1o0iJVFlusgoJ+zVlisWXn8oGLUYuxBHXuFkznPT9FMwGqbMbIgUi1UnQd85Tx/RDMBwza/YbH2QTUBPM2Pbo6cAE15iQAB+DK2weK3BjDxH0rjKMgqjvW/j0EB3EF21/i3BxFfrh4WiALXTGPX68wD9jAoX8cw9zKHcps3D8gywnuOMtzYH1Bs431rGOaN5fWkA4nHPe8HONQCuHUdv+baZIQ3ReO2tmaD7YNHVM5pz1E/tbC1lsNefTjZyOhHMnXP36tyeJzhnAmBsBs3/YA2hnPuAT75v5wUl3YH81/vy3JYIQG4r+ChhfLFvugKu9QUxa7zdiP8khUjyWUj/MbZlaboHwEGAGkG+sypty1/AAAAAElFTkSuQmCC');
+	background-size:100% 100%;
+	position:absolute;
+	top:0px;
+	right:0px;
+	left:0px;
+	bottom:0px;
+	margin:auto auto;
+	width:40px;
+	height:40px;
+	font-size:40px;
+	animation:spin linear 1.5s infinite;
+	}
+	
+	
+	
+myspinner:after
+	{
+	text-transform:uppercase;
+	color:black;
+    content: "Loading...";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    margin: auto auto;
+    height: 16px;
+    font-size: 10px;
+    padding-top: 75px;
+    width: 100%;
+    text-align: center;
+	font-weight:bold;
+	letter-spacing:1px;
+	}	
+	
+	
+myspinner.on
+	{
+	animation:spinner_on ease 0.4s;
+	}
+	
+myspinner.off
+	{
+	animation:spinner_off ease 0.4s;
+	}	
+	
+.global {position:fixed}
+
+
+
+myspinner.large:after
+	{
+	font-size:16px;
+	//font-weight:normal;
+	padding-top:110px;
+	text-transform:none;
+	letter-spacing:1px;
+	} 
+
+myspinner.large:before
+	{
+	width:70px;
+	height:70px;
+	} 
+
+
+@keyframes spinner_on
+	{
+	0%
+		{
+		background:rgba(255,255,255,0);
+		visibility:visible;
+		z-index:60;
+		}
+	100%
+		{
+		background:rgba(255,255,255,0.8);
+		visibility:visible;
+		z-index:60;
+
+		}
+	}
+
+	
+	
+@keyframes spinner_off
+	{
+	0%
+		{
+		background:rgba(255,255,255,0.7);		
+		visibility:visible;
+		z-index:60;
+		}
+	100%
+		{
+		background:rgba(255,255,255,0);
+		visibility:hidden;
+		z-index:-1;
+		}
+	}
+	
+	
+	
+	
+	
+@keyframes spin
+	{
+	0%
+		{
+		transform:rotate(0deg);
+		}
+	0%
+		{
+		transform:rotate(-360deg);
+		}
+	
+	
+	}
+	
+	
+//below is the customization for spinner in advert history
+
+
+
+@keyframes spinner_on_history
+	{
+	0%
+		{
+		background:rgba(243,243,243,0);
+		visibility:visible;
+		z-index:10000;
+		}
+	100%
+		{
+		background:rgba(243,243,243,0.8);
+		visibility:visible;
+		z-index:10000;
+
+		}
+	}
+
+	
+	
+@keyframes spinner_off_history
+	{
+	0%
+		{
+		background:rgba(243,243,243,0.7);
+		visibility:visible;
+		z-index:10000;
+		}
+	100%
+		{
+		background:rgba(243,243,243,0);
+		visibility:hidden;
+		z-index:-1;
+		}
+	}
+	
+myspinner.history
+	{
+	background:rgba(243,243,243,0.7);
+	}
+	
+myspinner.history.on
+	{
+	animation:spinner_on_history ease 0.4s;
+	}
+	
+myspinner.history.off
+	{
+	animation:spinner_off_history ease 0.4s;
+	}	
+	
+	
+	

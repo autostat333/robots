@@ -1,0 +1,125 @@
+<div class="robot_urls_parsed">
+
+
+    <h2>Robot Urls Parsed</h2>
+
+
+    <div class="table md-whiteframe-1dp">
+
+        <myspinner ng-class="{'on':spinner,'off':!spinner,'global':spinner=='global'}"></myspinner>
+
+
+        <div class="params_container">
+            <md-input-container>
+                <label>Sorting</label>
+                <md-select
+                    ng-model="PARAMS['sortingFieldId']"
+                    >
+
+                    <md-option
+                        ng-repeat="it in sortingOptions"
+                        value="{{it['id']}}"
+                        >{{it['label']}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Filter by name</label>
+                <input
+                    ng-model="PARAMS['filtring']['fileName']"
+                    ng-model-option="{'debounce':500}"
+                    >
+            </md-input-container>
+
+            <md-input-container>
+                <label>Filter by ip</label>
+                <input
+                    ng-model="PARAMS['filtring']['ip']"
+                    ng-model-option="{'debounce':500}"
+                    >
+            </md-input-container>
+
+
+            <md-input-container>
+                <label>Time FROM:</label>
+                <md-datepicker
+                    ng-model="PARAMS['filtring']['_and']['from']"
+                    md-open-on-focus
+                    >
+                </md-datepicker>
+            </md-input-container>
+            <md-input-container>
+                <label>Time TO:</label>
+                <md-datepicker
+                    ng-model="PARAMS['filtring']['_and']['to']"
+                    md-min-date="PARAMS['filtring']['_and']['from']"
+                    md-open-on-focus
+                    >
+                </md-datepicker>
+            </md-input-container>
+
+            <md-switch
+                class="md-primary"
+                ng-model="PARAMS['filtring']['error']"
+                >
+                Only Errors
+            </md-switch>
+
+
+            <md-button class="md-raised md-primary not_visible"
+                ng-click="applyParams()"
+                ng-class="{'visible':isParamsChanged()}"
+                >
+                Apply
+            </md-button>
+
+
+
+
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>IP PROXY</th>
+                    <th>Url</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration</th>
+                    <th>Error</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="it in ROBOT_URLS">
+                    <td><a ng-href="/pages/{{SELECTED_ROBOT['robotName']}}/{{it['fileName']}}.html" target="_blank">{{it['fileName']}}</a></td>
+                    <td>{{it['ip']}}</td>
+                    <td>{{it['url']}}</td>
+                    <td>{{it['startTime']|date:'d MMM yyyy HH:mm'}}</td>
+                    <td>{{it['endTime']|date:'d MMM yyyy HH:mm'}}</td>
+                    <td>{{it['duration']|date:'H:mm':'Z'}}</td>
+                    <td>{{it['error']}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <cl-paging
+            ng-show="PARAMS_PAGINATION['pages']"
+            flex
+            cl-pages="PARAMS_PAGINATION['pages']"
+            cl-steps="6"
+            cl-align="center center"
+            cl-current-page="PARAMS_PAGINATION['current']"
+            >
+        </cl-paging>
+
+
+    </div>
+
+
+
+
+</div>

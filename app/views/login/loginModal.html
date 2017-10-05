@@ -1,0 +1,99 @@
+<md-dialog class="login_modal_container">
+
+	<myspinner ng-class={'on':spinner,'off':spinner==false}></myspinner>
+	
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Login to the system</h2>
+			<span flex></span>
+		</div>
+		
+		
+	</md-toolbar>
+
+	<md-dialog-content>
+	
+	
+		<div class="login_form">
+
+			<form
+				name="loginForm"
+				>
+			
+				<md-input-container>
+					<label>Email</label>
+					<md-icon>email</md-icon>
+					<input
+						name="email"
+						ng-model="account['email']"
+						required
+						ng-change="inputChange()"
+						my-autofocus
+						type="email"
+						>
+					<!--
+					<div class="hint" ng-show="!checkError('name')||loginForm.name.$untouched">Ваш логин (почтовый адрес под которым Вы регистрировались)</div>
+					-->
+					
+					
+					<div ng-messages="loginForm.email.$error" class="ng-messages">
+						<div ng-message="required" class="ng-message">Required field</div>
+						<div ng-message="email" class="ng-message">Email address is incorrect</div>
+					</div>
+				
+				</md-input-container>
+			
+				<md-input-container>
+					<label>Password</label>
+					<md-icon>lock</md-icon>
+					<input
+						name="password"
+						ng-model="account['password']"
+						required					
+						ng-change="inputChange()"
+						type="password"
+						min-length="6"
+						>
+					
+					<!-- 
+					<div class="hint" ng-show="!checkError('password')||loginForm.password.$untouched">Ваш пароль при регистрации</div>
+					-->
+					
+					<div ng-messages="loginForm.password.$error" class="messages">
+						<div ng-message="required" class="message">Required field</div>
+						<div ng-message="min-length" class="message">Password can not be less than 6 symbols</div>
+					</div>
+					
+				</md-input-container>			
+			
+			</form>
+			
+			
+			
+			<md-button class="md-raised md-primary btn signin_btn"
+				ng-click="submitBtn()"
+				ng-disabled="formEmpty()||checkError('all','loginForm')"
+				enter-press="submitBtn()"
+				enter-target=".login_modal_container"
+				autofocus-disabled="true"
+				>Submit</md-button>
+			
+			<div class="message_card ng-hide md-whiteframe-1dp"
+				ng-show="showError"
+				>
+				<md-icon>report_problem</md-icon>
+				<span>{{showError}}</span>
+			</div>
+
+		</div>
+
+
+	</md-dialog-content>
+	
+</md-dialog>
+
+
+
+
+
+

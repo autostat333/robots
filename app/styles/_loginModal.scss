@@ -1,0 +1,223 @@
+.login_modal_container
+	{
+	margin-top:50px;
+
+
+	md-dialog-content
+		{
+		transition:all ease 0.7s;
+		
+		width:400px;
+		//min-height:410px;
+	
+		@media(max-width:450px)
+			{
+			width:300px;
+			height:350px;
+			}
+		}
+	
+	md-dialog-content.signup_state
+		{
+		width:480px;
+		}
+
+		
+	.login_form
+		{
+		width:80%;
+		margin-left:auto;
+		margin-right:auto;
+		
+		md-input-container
+			{
+			height:50px;
+			}
+
+
+		button
+			{
+			margin-left:0px;
+			}
+		
+		}
+	
+	
+	
+	
+	form
+		{
+		margin-top:30px;
+		width:100%;
+
+		input
+			{
+			//width:calc(100% - 30px);
+			}
+		
+		}
+
+		
+	.signin_btn, .signup_btn
+		{
+		width:100%;
+		}
+
+		
+	
+	.signup_switch
+		{
+		width:100%;
+		margin-top:20px;
+
+		.title
+			{
+			letter-spacing: 1px !important;
+			font-size: 12px;
+			color:lighten(gray,10%);
+			}
+		
+		.signup_button
+			{
+			margin-top:7px;
+			cursor:pointer;
+			outline-width:0px !important;
+			
+			md-icon,
+			span
+				{
+				letter-spacing: 1px !important;
+				color:darken($primary,10%);
+				}		
+			}
+		.signup_button:hover
+			{
+			md-icon,
+			span
+				{
+				color:darken($primary,20%);
+				}		
+			}
+		
+		
+		}
+	
+	
+	.signup_form
+		{
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom:30px;
+
+		md-input-container
+			{
+			height:50px !important;
+			margin-top:15px;
+			margin-bottom:0px;
+			}
+		
+
+		md-input-container:nth-child(1) //NAME
+			{
+			margin-top:0px;
+			}
+			
+		md-input-container:nth-child(3),//PASS
+		md-input-container:nth-child(5),//PHONE
+			{
+			margin-top:30px;
+			}
+
+
+
+			
+		
+		form[name=signupForm]
+			{
+			margin-top:30px;
+			
+			}
+		
+		.signup_btn
+			{
+			margin-top:30px !important;
+			}
+			
+
+		md-input-container.phone_input
+			{
+			.prefix
+				{
+				vertical-align: middle;
+				display: block;
+				float:left;
+				font-size: 26px;
+				margin-top: 4px;
+				color:#8a8a8a;
+				}
+				
+			input
+				{
+				width:calc(100% - 55px);
+				float:right;
+				height:39px !important;
+				font-size:26px !important;
+				}
+			label
+				{
+				left:90px;
+				width:calc(100% - 36px - 18px - 55px);
+				bottom:auto;
+				top:-19px;
+				font-size:20px;
+				}
+			
+			.hint
+				{
+				text-align:right;
+				}
+				
+			[ng-messages]
+				{
+				width:100%;
+				[ng-message]{text-align:right;}
+				}
+			
+				
+			}
+		md-input-container.md-input-invalid
+			{
+			color:$error;
+			}
+		md-input-container.md-input-focused .prefix
+			{
+			color:darken($primary,15%);
+			}
+		
+		
+		}
+	
+	.message_card
+		{
+		md-icon
+			{
+			color:white;
+			font-size:22px;
+			}
+		margin-top:20px;
+		color: white;
+		padding: 15px;
+		text-align: center;
+		background: #ffbcbc;
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,96 @@
+<div class="reports_details_container">
+
+
+    <div class="table md-whiteframe-1dp">
+        <myspinner ng-class="{'on':spinner,'off':!spinner,'global':spinner=='global'}"></myspinner>
+
+        <md-input-container class="select_round">
+            <label>Choose one round...</label>
+            <md-select
+                ng-model="selectedRoundId"
+                >
+                <md-option
+                    ng-repeat="round in ROUNDS.data"
+                    ng-value="round['roundId']"
+                    >
+                    {{round['dateStr']}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+
+        <div class="params_container">
+            <md-input-container>
+                <label>Sorting</label>
+                <md-select
+                    ng-model="PARAMS['sortingFieldId']"
+                    >
+
+                    <md-option
+                        ng-repeat="it in sortingOptions"
+                        value="{{it['id']}}"
+                        >{{it['label']}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Filter by name</label>
+                <input
+                    ng-model="PARAMS['filtring']['fileName']"
+                    ng-model-option="{'debounce':500}"
+                    >
+            </md-input-container>
+
+
+            <md-button class="md-raised md-primary not_visible"
+                ng-click="applyParams()"
+                ng-class="{'visible':isParamsChanged()}"
+                >
+                Apply
+            </md-button>
+
+
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th
+                        ng-repeat="robot in robotNames"
+                        >{{robot}}</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="it in ROBOT_DATA">
+                    <td>{{it['fileName']}}</td>
+                    <td
+                        ng-repeat="robot in robotNames"
+                        >
+                        <a href="./pages/{{robot}}/{{it['fileName']}}.html" target="blank">
+                            <span ng-show="it[robot]['price']">{{it[robot]['price']}}</span>
+                            <span ng-show="!it[robot]['price']">Not defined</span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <cl-paging
+            ng-show="PARAMS_PAGINATION['pages']"
+            flex
+            cl-pages="PARAMS_PAGINATION['pages']"
+            cl-steps="6"
+            cl-align="center center"
+            cl-current-page="PARAMS_PAGINATION['current']"
+            >
+        </cl-paging>
+
+    </div>
+
+
+
+</div>

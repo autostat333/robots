@@ -1,0 +1,73 @@
+<div class="robot_base_urls">
+
+    <h2>Robot Base Urls</h2>
+
+
+    <div class="table md-whiteframe-1dp">
+
+        <myspinner ng-class="{'on':spinner,'off':!spinner,'global':spinner=='global'}"></myspinner>
+
+
+        <div class="params_container">
+            <md-input-container>
+                <label>Sorting</label>
+                <md-select
+                    ng-model="PARAMS['sortingFieldId']"
+                    >
+
+                    <md-option
+                        ng-repeat="it in sortingOptions"
+                        value="{{it['id']}}"
+                        >{{it['label']}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Filter by name</label>
+                <input
+                    ng-model="PARAMS['filtring']['name']"
+                    ng-model-option="{'debounce':500}"
+                    >
+            </md-input-container>
+
+            <md-button class="md-raised md-primary"
+                ng-click="applyParams()"
+                ng-show="isParamsChanged()"
+                >
+                Apply
+            </md-button>
+
+
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Url</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in ROBOT_URLS">
+                <td>{{it['name']}}</td>
+                <td>{{it['url']}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <cl-paging
+            ng-show="PARAMS_PAGINATION['pages']"
+            flex
+            cl-pages="PARAMS_PAGINATION['pages']"
+            cl-steps="6"
+            cl-align="center center"
+            cl-current-page="PARAMS_PAGINATION['current']"
+            >
+        </cl-paging>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+.reports_container
+  {
+  padding:50px;
+
+  md-input-container.select_round
+    {
+    width:300px;
+    }
+
+  .params_container
+    {
+    justify-content:flex-start;
+
+    md-input-container
+      {
+      margin-left:20px;
+      }
+
+    md-input-container:first-child
+      {
+      margin-left:0px;
+      }
+
+    }
+
+
+  }

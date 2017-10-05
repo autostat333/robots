@@ -1,0 +1,65 @@
+<div class="main_container">
+
+    <myspinner ng-class="{'on':spinner,'off':!spinner,'global':spinner=='global'}"></myspinner>
+
+    <div class="top_bar md-whiteframe-2dp">
+
+
+        <div class="logo_container">
+            <div class="line_center">
+                <a href="#/" class="user_select_none">ROBOTS</a>
+            </div>
+        </div>
+
+
+        <div class="menu_items">
+            <div class="line_center">
+                <a class="item" ui-sref-active="active" ng-click="broadcastRoundId()" ui-sref="main.rounds">Rounds</a>
+                <a class="item" ui-sref-active="active" ng-click="broadcastRoundId()" ui-sref="main.reports">Reports</a>
+            </div>
+
+
+
+        </div>
+
+        <div class="cur_date">
+            <div class="line_center">
+                <div class="time_wrap">
+                    <div>{{CURRENT_TIME.time}}</div>
+                    <span>{{CURRENT_TIME.weekDay}}</span>
+                    <span>{{CURRENT_TIME.date}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="user_name">
+            <div class="line_center">
+                <md-menu>
+                    <md-button class="user_btn" ng-click="openMenu($mdMenu,$event)">
+                        <i class="material-icons">account_circle</i>
+                        <span>{{$root.USER.email}}</span>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item><span>{{$root.USER.email}}</span></md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-disabled="true">
+                                <md-icon>subject</md-icon>Profile
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="logOut()">
+                                <md-icon>exit_to_app</md-icon>Log Out
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div ui-view></div>
+
+</div>

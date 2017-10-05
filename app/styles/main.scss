@@ -1,0 +1,172 @@
+.main_container
+  {
+  overflow:hidden;
+
+  .top_bar
+    {
+    top:0px;
+    width:100%;
+    background:$primary;
+    display:flex;
+    flex-direction:row;
+    height:50px;
+    position:absolute;
+    justify-content:space-between;
+    position:relative;
+
+    md-icon
+      {
+      color:white !important;
+      }
+
+    md-icon.not_active{opacity:0.5}
+
+
+    .line_center
+      {
+      height:100%;
+      width:100%;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      border-right:1px solid white;
+      }
+
+    .logo_container
+      {
+      width: 320px;
+      height: 100%;
+      text-transform: uppercase;
+      box-sizing:border-box;
+      padding:7px;
+      padding-right:10px;
+      text-align:left;
+
+      a
+        {
+        text-decoration: none;
+        font-size: 30px;
+        line-height:30px;
+        padding:0px;
+        font-weight: bold;
+        color:$logo_color;
+        }
+    }
+
+
+    .menu_items
+      {
+      width:calc(100% - 320px - 320px);
+      padding:7px;
+      text-aling:center;
+      a.item
+        {
+        height:100%;
+        color:white;
+        text-decoration:none;
+        width:100px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-transform:uppercase;
+        position:absolute;
+        top:0px;
+
+        }
+
+      a.item:first-child
+        {
+        left:calc(50% - 100px);
+        }
+
+      a.item:last-child
+        {
+      left:50%;
+        }
+
+      a.active
+        {
+        background:#0398b0;
+        }
+
+      }
+
+
+    .cur_date
+      {
+      width:100px;
+      height:100%;
+      box-sizing:border-box;
+      padding:7px;
+      color:white;
+      text-align:center;
+
+      .line_center
+        {
+        position:relative;
+        }
+
+      .time_wrap
+        {
+        position:absolute;
+        top:-4px;
+        left:0px;
+        }
+
+      div
+        {
+        text-align: center;
+        font-size:25px;
+        line-height:22px;
+        }
+
+      span
+        {
+        display:inline-block;
+        vertical-align:middle;
+        font-size:12px;
+        }
+
+      }
+
+
+    .user_name
+      {
+      width:220px;
+      height:100%;
+      box-sizing:border-box;
+      padding:7px;
+      color:white;
+
+      .line_center
+        {
+        justify-content:flex-end;
+        border-right-width:0px;
+        }
+      .user_btn
+        {
+        span
+          {
+          font-size:14px;
+          vertical-align:middle;
+          display:inline-block;
+          max-width:150px;
+          text-transform: none;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          }
+        i
+          {
+          font-size:34px;
+          vertical-align:middle;
+          }
+        }
+
+
+      }
+
+    }
+
+
+  }

@@ -1,0 +1,124 @@
+
+//remove additional row when filter as input
+.md-errors-spacer
+  {
+  display:none;
+  }
+
+
+.table
+  {
+  padding:20px;
+  background:white;
+  overflow-x:scroll;
+  position:relative;
+
+  th,td
+    {
+    text-align:left;
+    font-size: 14px;
+    font-weight: 100;
+    color: gray;
+    border-bottom:1px solid #efefef;
+    }
+
+  td
+    {
+    font-size:16px;
+    color:black;
+    }
+
+
+  table
+    {
+    width:100%;
+    border-collapse:collapse;
+    }
+
+  td,th
+    {
+    padding:15px;
+    }
+  td
+    {
+    white-space:nowrap;
+    font-size:14px;
+    }
+
+  tr:hover
+    {
+    background:#f7f7f7;
+    }
+
+  }
+
+
+//for pagination (give an top margin)
+.layout-row
+  {
+  margin-top:50px;
+  }
+
+
+.params_container
+  {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:30px;
+  align-items:center;
+
+  button
+    {
+    height:40px;
+    }
+
+  md-input-container
+    {
+    width:180px;
+    }
+
+
+  md-switch
+    {
+    margin:18px 0px !important;
+    span{font-size:12px;}
+    }
+  //for sorting
+  md-input-container:first-child
+    {
+    width:130px;
+    margin-left:0px;
+    }
+
+  }
+
+
+.md-datepicker-input-container
+  {
+  margin-left:0px !important;
+
+  }
+
+
+.not_visible
+  {
+  visibility:hidden;
+  }
+
+.visible
+  {
+  visibility:visible;
+  }
+
+.tabs
+  {
+  margin-top: 40px;
+  background: #f1f1f1;
+
+
+  a.md-button.active
+    {
+    background: gray;
+    color: white;
+    }
+  }

@@ -1,0 +1,141 @@
+md-dialog
+	{
+	position:relative;
+	}
+
+md-dialog,
+md-toolbar
+	{
+	border-radius:0px !important;
+	}
+	
+	
+md-toolbar:not(md-menu-toolbar)
+	{
+	background:darken($primary,10%) !important;
+	}
+	
+	
+md-dialog-content
+	{
+	padding-bottom:30px;
+	}
+	
+	
+md-dialog[role=alertdialog], md-dialog.confirmdialog
+	{
+	
+	md-dialog-content
+		{
+		max-width:400px;
+		}
+	
+	
+	h2:before
+		{
+		font-family: Material Icons;
+		content: "report_problem";
+		color: $error;
+		display: block;
+		font-size: 46px;
+		margin-bottom: 15px;
+		}
+		
+	h2
+		{
+		text-align:center;
+		font-weight:bold;
+		
+		}
+		
+	md-dialog-actions
+		{
+		padding:0px;
+		min-height:auto;
+		
+		button
+			{
+			width:100%;
+			border-radius:0px;
+			background:$error;
+			color:white !important;
+			line-height:50px;
+			}
+			
+		p{color:gray;}
+			
+		button:hover,
+		button:focus
+			{
+			background:darken($error,10%) !important;
+			}
+			
+		}
+		
+		
+	}
+	
+	
+md-dialog.confirmdialog
+	{
+	min-width:300px;
+
+	h2
+		{
+		font-weight:normal !important;
+		}
+		
+		
+	h2:before
+		{
+		content:'thumb_up' !important;
+		color:$primary;
+		}
+	
+	md-dialog-actions button
+		{
+		background:$primary !important;
+		color:white;
+		}
+
+	md-dialog-actions button:hover, md-dialog-actions button:focus
+		{
+		background:darken($primary,10%) !important;
+		}
+
+
+		
+	}
+
+
+//customization alert
+md-dialog[role=alertdialog]
+	{
+	button:focus,button
+		{
+		margin:0px;
+		background:lighten($error,10%) !important;
+		}
+	}
+
+
+
+md-dialog[role=alertdialog]
+	{
+
+	min-width:550px;
+	@media(max-width:768px)
+		{
+		min-width:300px;
+		}
+	md-dialog-content
+		{
+		width:100%;
+		box-sizing:border-box;
+		max-width:none;
+		.md-dialog-content-body
+			{
+			text-align:center;
+			}
+		}
+	}

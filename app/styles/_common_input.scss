@@ -1,0 +1,50 @@
+md-input-container
+  {
+  width:100%;
+  box-sizing:border-box;
+  }
+
+
+md-input-container.md-input-invalid
+  {
+  md-icon,input, .ng-message, label, label:after, .message
+    {
+    color:$error !important;
+    }
+
+  input
+    {
+    border-bottom-color:$error !important;
+    }
+
+  }
+
+
+md-input-container.md-input-focused:not(.md-input-invalid)
+  {
+  md-icon,input, .ng-message, label, label:after, .message
+    {
+    color:$primary !important;
+    }
+
+  input
+    {
+    border-bottom-color:$primary !important;
+    }
+
+  }
+
+md-input-container.md-input-focused
+  {
+  md-icon
+    {
+    -webkit-animation-name: hvr-wobble-vertical;
+    animation-name: hvr-wobble-vertical;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    }
+  }

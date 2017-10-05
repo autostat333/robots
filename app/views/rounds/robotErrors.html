@@ -1,0 +1,95 @@
+<div class="robot_errors">
+
+    <h2>Robot Errors</h2>
+
+
+    <div class="table md-whiteframe-1dp">
+
+        <myspinner ng-class="{'on':spinner,'off':!spinner,'global':spinner=='global'}"></myspinner>
+
+
+        <div class="params_container">
+            <md-input-container>
+                <label>Sorting</label>
+                <md-select
+                    ng-model="PARAMS['sortingFieldId']"
+                    >
+
+                    <md-option
+                        ng-repeat="it in sortingOptions"
+                        value="{{it['id']}}"
+                        >{{it['label']}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Filter by name</label>
+                <input
+                    ng-model="PARAMS['filtring']['fileName']"
+                    ng-model-option="{'debounce':500}"
+                    >
+            </md-input-container>
+
+
+            <md-input-container>
+                <label>From</label>
+                <md-datepicker
+                    ng-model="PARAMS['_and']['from']"
+                    md-open-on-focus
+                    ></md-datepicker>
+            </md-input-container>
+
+            <md-input-container>
+                <label>From</label>
+                <md-datepicker
+                    md-min-date="PARAMS['_and']['from']"
+                    ng-model="PARAMS['_and']['to']"
+                    md-open-on-focus
+                    ></md-datepicker>
+            </md-input-container>
+
+
+            <md-button class="md-raised md-primary not_visible"
+                ng-click="applyParams()"
+                ng-class="{'visible':isParamsChanged()}"
+                >
+                Apply
+            </md-button>
+
+
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Error Text</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="it in ROBOT_ERRORS">
+                <td><a ng-href="/{{SELECTED_ROBOT['robotName']}}/{{it['fileName']}}" target="_blank">{{it['fileName']}}</a></td>
+                <td>{{it['created']}}</td>
+                <td>{{it['Error']}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <cl-paging
+            ng-show="PARAMS_PAGINATION['pages']"
+            flex
+            cl-pages="PARAMS_PAGINATION['pages']"
+            cl-steps="6"
+            cl-align="center center"
+            cl-current-page="PARAMS_PAGINATION['current']"
+            >
+        </cl-paging>
+
+
+    </div>
+
+
+</div>
