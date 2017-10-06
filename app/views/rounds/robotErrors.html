@@ -69,7 +69,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="it in ROBOT_ERRORS">
-                <td><a ng-href="/{{SELECTED_ROBOT['robotName']}}/{{it['fileName']}}" target="_blank">{{it['fileName']}}</a></td>
+                <td><a ng-href="/pages/{{SELECTED_ROBOT['robotName']}}/{{it['fileName']}}.html" target="_blank">{{it['fileName']}}</a></td>
                 <td>{{it['created']}}</td>
                 <td>{{it['Error']}}</td>
             </tr>

@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$backend'];
 module.exports = function baseTableCntr($scope,$backend)
     {
 
@@ -95,3 +94,5 @@ module.exports = function baseTableCntr($scope,$backend)
         }
 
     }
+module.exports.$inject = ['$scope','$backend'];
+

@@ -1,4 +1,3 @@
-module.exports.$inject = ['$stateProvider','$urlRouterProvider','$httpProvider'];
 module.exports = function config($stateProvider,$urlRouterProvider,$httpProvider)
     {
 
@@ -110,3 +109,6 @@ module.exports = function config($stateProvider,$urlRouterProvider,$httpProvider
 
 
     }
+module.exports.$inject = ['$stateProvider','$urlRouterProvider','$httpProvider'];
+
+

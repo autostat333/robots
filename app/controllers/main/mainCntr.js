@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$interval','$timeout','$filter','$backend','$q','socketIo','$rootScope','$cookies'];
 module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q,socketIo,$rootScope,$cookies)
     {
 
@@ -174,3 +173,6 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
 
 
     }
+
+module.exports.$inject = ['$scope','$interval','$timeout','$filter','$backend','$q','socketIo','$rootScope','$cookies'];
+

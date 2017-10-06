@@ -18,6 +18,7 @@ module.exports = function RobotExampleCntr(db,injector,emit)
     var request = require('request');
     var async = require('async');
     var config = require('../config.js');
+    var htmlParser = require('./parsers/exampleRobotParser.js');
 
     var $scope = {};
     $scope.inject = inject;
@@ -40,6 +41,7 @@ module.exports = function RobotExampleCntr(db,injector,emit)
 
     $scope.setDefaultOpt();
     $scope.restart();
+
 
     return $scope;
 
@@ -339,14 +341,10 @@ module.exports = function RobotExampleCntr(db,injector,emit)
         {
         try
             {
-            //$scope.parsedResponse = JSON.parse($scope.response);
-            var extract = $scope.response.match(/.*id="heading"[^>]*>([^<]+)<.*/);
-            if (extract)
-                extract = extract[1];
-            if (!extract) throw new Error('Null or undefined is a result of parsing!');
-            $scope.parsedResponse = {'res':extract};
-            setTimeout(callback,0);
-            return false;
+	    var result = htmlParser($scope.response);
+            if (!result) throw new Error('Null or undefined is a result of parsing!');
+	    $scope.parsedResponse = {'res':result};
+	    callback();
             }
 
         catch(err){err.message+='; Error when parsing response, '+$scope.nextElement['url'];callback(err);return false;}

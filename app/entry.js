@@ -14,18 +14,18 @@ import ngCookies from 'angular-cookies';
 
 
 
-import config from './config.js';
-import reportsCntr from './controllers/reports/reportsCntr.js';
-import roundsCntr from './controllers/rounds/roundsCntr.js';
-import robotBaseUrlsCntr from './controllers/rounds/robotBaseUrlsCntr.js';
-import robotUrlsParsedCntr from './controllers/rounds/robotUrlsParsedCntr.js';
-import robotErrorsCntr from './controllers/rounds/robotErrorsCntr.js';
-import socketIo from './services/socketIo.js';
-import loginModalCntr from './controllers/login/loginModalCntr.js';
-import loginCntr from './controllers/login/loginCntr.js';
-import minLength from './directives/minLength.js';
-import autofocus from './directives/autofocus.js';
-import enterPress from './directives/enter_press.js';
+var config = require('./config.js');
+var reportsCntr = require('./controllers/reports/reportsCntr.js');
+var roundsCntr = require('./controllers/rounds/roundsCntr.js');
+var robotBaseUrlsCntr = require('./controllers/rounds/robotBaseUrlsCntr.js');
+var robotUrlsParsedCntr = require('./controllers/rounds/robotUrlsParsedCntr.js');
+var robotErrorsCntr = require('./controllers/rounds/robotErrorsCntr.js');
+var socketIo = require('./services/socketIo.js');
+var loginModalCntr = require('./controllers/login/loginModalCntr.js');
+var loginCntr = require('./controllers/login/loginCntr.js');
+var minLength = require('./directives/minLength.js');
+var autofocus = require('./directives/autofocus.js');
+var enterPress = require('./directives/enter_press.js');
 
 window.$ = window.jQuery = require('jquery');
 window.io = require('socket.io-client');

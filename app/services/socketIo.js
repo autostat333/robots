@@ -1,12 +1,13 @@
-module.exports.$inject = [];
 module.exports = function socketIo()
     {
+
+    var config = require('../../config.js');
 
     var socket = '';
 
     this.start = function()
         {
-        socket = io.connect('http://localhost:3001');
+        socket = io.connect('http://'+config['DOMAIN']+':'+config['PORT']+'/');
         }
 
 
@@ -16,3 +17,5 @@ module.exports = function socketIo()
         }
 
     }
+module.exports.$inject = [];
+

@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$backend','$q','$filter','$log','$mdDialog','$rootScope'];
 module.exports = function reportsCntr($scope,$backend,$q,$filter,$log,$mdDialog,$rootScope)
     {
     $scope.init = init;
@@ -91,3 +90,5 @@ module.exports = function reportsCntr($scope,$backend,$q,$filter,$log,$mdDialog,
 
 
     }
+module.exports.$inject = ['$scope','$backend','$q','$filter','$log','$mdDialog','$rootScope'];
+
