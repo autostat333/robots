@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$backend','$controller'];
 module.exports = function robotsBaseUrlsCntr($scope,$backend,$controller)
     {
 
@@ -64,3 +63,6 @@ module.exports = function robotsBaseUrlsCntr($scope,$backend,$controller)
         }
 
     }
+
+module.exports.$inject = ['$scope','$backend','$controller'];
+

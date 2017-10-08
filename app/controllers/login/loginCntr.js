@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$mdDialog'];
 module.exports = function loginCntr($scope,$mdDialog)
     {
 
@@ -27,3 +26,5 @@ module.exports = function loginCntr($scope,$mdDialog)
         }
 
     }
+module.exports.$inject = ['$scope','$mdDialog'];
+

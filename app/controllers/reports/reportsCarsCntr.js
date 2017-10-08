@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$controller'];
 module.exports = function($scope,$controller)
     {
 
@@ -115,3 +114,5 @@ module.exports = function($scope,$controller)
 
 
     }
+module.exports.$inject = ['$scope','$controller'];
+

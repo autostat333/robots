@@ -49,10 +49,9 @@ mongo.connect('mongodb://'+config.HOST+':27017/'+config.DATABASE,function(err,db
 
 
 var injector = {};
-var proxyCntr, robotExample, robotDok, roundCntr, accountCntr, ROBOTS,API;  //determine pointer to controllers
+var robotExample, robotDok, roundCntr, accountCntr, ROBOTS,API;  //determine pointer to controllers
 function initControllers()
 	{
-	proxyCntr = injector['proxyCntr'] = require('./server/ProxyCntr.js')(db,injector);
 	robotExample = injector['robotExample'] = require('./server/RobotExampleCntr.js')(db,injector,emit); //emit - functions to send current round
 	robotDok = injector['robotDok'] = require('./server/RobotDokCntr.js')(db,injector,emit); //emit - functions to send current round
 	roundCntr = injector['roundCntr'] = require('./server/RoundCntr.js')(db,injector,emit);

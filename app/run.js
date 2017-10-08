@@ -1,4 +1,3 @@
-module.exports.$inject = ['$rootScope','$state'];
 module.exports = function run($rootScope,$state)
     {
 
@@ -30,3 +29,5 @@ module.exports = function run($rootScope,$state)
         })
 
     }
+module.exports.$inject = ['$rootScope','$state'];
+

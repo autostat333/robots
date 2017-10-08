@@ -1,4 +1,3 @@
-module.exports.$inject = ['$scope','$mdDialog','$backend'];
 module.exports = function loginModalCntr($scope,$mdDialog,$backend)
 	{
 	$scope.init = init;
@@ -88,4 +87,7 @@ module.exports = function loginModalCntr($scope,$mdDialog,$backend)
 		}
 
 	}
+
+module.exports.$inject = ['$scope','$mdDialog','$backend'];
+
 	

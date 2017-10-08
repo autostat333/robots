@@ -1,4 +1,3 @@
-module.exports.$inject = ['$q','$http','$mdDialog'];
 module.exports = function backendService($q,$http,$mdDialog)
     {
 
@@ -255,3 +254,6 @@ module.exports = function backendService($q,$http,$mdDialog)
 
 
     }
+
+module.exports.$inject = ['$q','$http','$mdDialog'];
+

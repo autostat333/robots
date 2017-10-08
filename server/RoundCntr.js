@@ -1,10 +1,9 @@
 module.exports = function RoundCntr(db,injector,emit)
     {
 
-    var proxyCntr, ROBOTS;
+    var ROBOTS;
     function inject()
         {
-        proxyCntr = injector['proxyCntr'];
         ROBOTS = injector['ROBOTS'];
         }
 
@@ -24,7 +23,7 @@ module.exports = function RoundCntr(db,injector,emit)
     $scope.startRound = startRound; //set flag to begin rounds
     $scope.finishRound = finishRound; //save data to DB and create empty round
     $scope.createRound = createRound; //create empty round object
-    $scope.runIterations = runIterations; //iterations over proxy and robots cntrollers
+    $scope.runIterations = runIterations; //iterations over all robots cntrollers
     $scope.handleError = handleError; //handle error in
     $scope.robotsIsFinished = robotsIsFinished;
     $scope.robotsIsStopped = robotsIsStopped;
@@ -131,7 +130,6 @@ module.exports = function RoundCntr(db,injector,emit)
                 robot.restart();
                 }
 
-            proxyCntr.restart();
             //save round to database rounds collection
             db.collection('rounds').insertOne($scope.round,callback);
 
@@ -150,7 +148,6 @@ module.exports = function RoundCntr(db,injector,emit)
         emit(); //send current round by websocket
 
         async.series([
-            proxyCntr.setProxy,
             ROBOTS[0].next,   //run the first robot (Example)
             ROBOTS[1].next   //run the first robot (DocRobot)
             ],

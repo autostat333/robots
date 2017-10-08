@@ -7,10 +7,9 @@
 
 module.exports = function RobotExampleCntr(db,injector,emit)
     {
-    var proxyCntr,roundCntr;
+    var roundCntr;
     function inject()
         {
-        proxyCntr = injector['proxyCntr'];
         roundCntr = injector['roundCntr'];
         }
 
@@ -18,6 +17,7 @@ module.exports = function RobotExampleCntr(db,injector,emit)
     var request = require('request');
     var async = require('async');
     var config = require('../config.js');
+    var htmlParser = require('./parsers/exampleRobotParser.js');
 
     var $scope = {};
     $scope.inject = inject;
@@ -41,15 +41,16 @@ module.exports = function RobotExampleCntr(db,injector,emit)
     $scope.setDefaultOpt();
     $scope.restart();
 
+
     return $scope;
 
 
     function setDefaultOpt()
         {
         $scope.options = {};
-        $scope.options.headers = {};
         //set headers as google bot
-        $scope.options.headers['User-Agent'] = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
+        //$scope.options.headers = {};
+        //$scope.options.headers['User-Agent'] = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
 
         //path for responses (only last responses);
         $scope.options.responseDir = './'+this.robotName+'/';
@@ -58,34 +59,57 @@ module.exports = function RobotExampleCntr(db,injector,emit)
 
 
 
-    //object for transmitting informtation grom callback to callback
-    //and saving to the Robot results of parsing
-    function createNextElement(url,fileName,proxyIp,roundId,proxyRoundId)
+    //object for transmitting information grom callback to callback
+    //and saving to the Robot collection (result of current iteration)
+    //saveToDB - is use it to complete and save to mongo
+    //in UI it is used to display RobotUrlsParsed
+    function createNextElement(url,fileName)
         {
 
         var d = {};
         d['url'] = url;
         d['fileName'] = fileName;
         d['startTime'] = (new Date()).getTime();
-        d['ip'] = proxyCntr.currentProxy.ip
+        d['ip'] = 'http://162.210.198.8:1200'; //PROXY, ROCKPROXY
         d['roundId'] = roundCntr.round.roundId;
-        d['proxyRoundId'] = proxyCntr.currentProxy.proxyRoundId;
         d['endTime'] = '';
         d['duration'] = '';
 
         return d;
         }
 
-    //create document to insert in database in report collection
+    //create BLANK document to insert in database in report collection
+    //in mongo report collection contains docs with next structure
+    // {fileName:...,roundId:...,ExampleRobot:parsedResponse}
+    //this document is used in reports->details of UI
     function createReportForDb()
         {
          var d = {};
 
          d['fileName'] = $scope.nextElement.fileName;
-         d[$scope.robotName] = '';
+         d[$scope.robotName] = '';  //results of PARSING ($scope.parsedResponse)
          d['roundId'] = $scope.nextElement.roundId;
          return d;
         }
+
+    //this is statistic block which is saved to current round and rounds collection
+    function refreshRobotStat()
+        {
+        $scope.stat = {};
+        $scope.stat.totalUrls = 0; //get from DB total count
+        $scope.stat.finishedUrls = 0; //parsed urls
+        $scope.stat.errors = []; //number of errors
+        $scope.stat.robotName = $scope.robotName; //to pass robot name to round dict
+        //$scope.stat.parsingErrors = ''; //number of parsing errors
+        }
+
+
+    //get stat for UI and for saving robot results to current round and rounds collection
+    function getStat()
+        {
+        return $scope.stat;
+        }
+
 
 
     function restart()
@@ -97,12 +121,6 @@ module.exports = function RobotExampleCntr(db,injector,emit)
         }
 
 
-        //get stat for UI and for savin MAIN ROUND
-    function getStat()
-        {
-        return $scope.stat;
-        }
-
 
         //yo stop the robot from UI
     function stop()
@@ -111,18 +129,6 @@ module.exports = function RobotExampleCntr(db,injector,emit)
         $scope.cursor = '';
         }
 
-
-
-    //this is statistic block which is saved to rounds
-    function refreshRobotStat()
-        {
-        $scope.stat = {};
-        $scope.stat.totalUrls = 0; //get from DB total count
-        $scope.stat.finishedUrls = 0; //parsed urls
-        $scope.stat.errors = []; //number of errors
-        $scope.stat.robotName = $scope.robotName; //to pass robot name to round dict
-        //$scope.stat.parsingErrors = ''; //number of parsing errors
-        }
 
 
 
@@ -211,8 +217,6 @@ module.exports = function RobotExampleCntr(db,injector,emit)
             {
             if (err) throw err;
 
-            proxyCntr.currentProxy.status = proxyCntr.currentProxy.status || {};
-            proxyCntr.currentProxy.status[$scope.robotName] = true;
             async.parallel([
                 $scope.saveToDb,
                 $scope.saveToReport
@@ -234,7 +238,7 @@ module.exports = function RobotExampleCntr(db,injector,emit)
         //because it is likely problems with one url (or parsing, or not respond etc)
         catch (err)
             {
-            err.message += "; Error in nextAsyncCallback() before async parallel!";
+            err.message += "; Error in async.series. NextAsyncCallback() fell down before async parallel!";
             var d = {};
             d['Error'] = err.toString();
             d['roundId'] = $scope.nextElement.roundId;
@@ -251,8 +255,6 @@ module.exports = function RobotExampleCntr(db,injector,emit)
                     if (err_) throw err;
                     $scope.stat.errors.push(doc['ops'][0]['_id']);
                     $scope.stat.finishedUrls++;
-                    proxyCntr.currentProxy.status = proxyCntr.currentProxy.status || {};
-                    proxyCntr.currentProxy.status[$scope.robotName] = doc['ops'][0]['_id'];
                     $scope.nextElement.error = doc['ops'][0]['_id']; //to save error to db
                     //save nextElement to DB
                     $scope.saveToDb(callback);
@@ -273,7 +275,6 @@ module.exports = function RobotExampleCntr(db,injector,emit)
             {
             if (!$scope.nextElement||!$scope.nextElement.ip||!$scope.nextElement.url) throw new Error('No data as nextElement!');
             var params = {};
-            params['headers'] = $scope.options.headers;
             params['url'] = $scope.nextElement.url;
             //to set proxy
             params['proxy'] = $scope.nextElement['ip'];
@@ -339,14 +340,10 @@ module.exports = function RobotExampleCntr(db,injector,emit)
         {
         try
             {
-            //$scope.parsedResponse = JSON.parse($scope.response);
-            var extract = $scope.response.match(/.*id="heading"[^>]*>([^<]+)<.*/);
-            if (extract)
-                extract = extract[1];
-            if (!extract) throw new Error('Null or undefined is a result of parsing!');
-            $scope.parsedResponse = {'res':extract};
-            setTimeout(callback,0);
-            return false;
+	    var result = htmlParser($scope.response);
+            if (!result) throw new Error('Null or undefined is a result of parsing!');
+	    $scope.parsedResponse = {'res':result};
+	    callback();
             }
 
         catch(err){err.message+='; Error when parsing response, '+$scope.nextElement['url'];callback(err);return false;}
