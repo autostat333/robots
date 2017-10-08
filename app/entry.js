@@ -67,7 +67,7 @@ var myApp = angular.module('app',[angularMaterial,uiRouter,'cl.paging',angularMe
 
     //directives
     .directive('minLength',minLength) //for imput min-length=5
-    .directive('autofocus',autofocus)
+    .directive('myAutofocus',autofocus)
     .directive('enterPress',enterPress)
 
 

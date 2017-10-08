@@ -30,6 +30,13 @@ var db = '';
 mongo.connect('mongodb://'+config.HOST+':27017/'+config.DATABASE,function(err,db_)
 	{
 	if (err){console.log('Error establish connection to DB');return false;};
+	if (!config.DB_USER_NAME)
+		{
+		db = db_;
+		console.log('Connected to MongoDB successfully!');
+		initControllers();
+		return false;
+		}
 	db_.admin().authenticate(config['DB_USER_NAME'],config['DB_USER_PASS'],function(err)
 		{
 		if (err){console.log('Error authenticate admin user');return false;}
@@ -72,7 +79,10 @@ app.use('/fonts',express.static(__dirname+'/app/fonts/'));
 app.use('/dist',express.static(__dirname+'/dist'));
 
 //decode user for AUTH
-app.use('/',function(req,resp,next){accountCntr().getUser(req,next)});
+app.use('/',function(req,resp,next)
+	{
+	accountCntr().getUser(req,next)
+	});
 
 
 //for index html - admin theme

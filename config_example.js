@@ -7,5 +7,7 @@ module.exports = {
     'REQUEST_TIMEOUT':10000, //timeout for http requests
     'ATTEMPTS':10, //number of attempts for resending the requests to proxy and robot
     'SECRET':'andrii',
+    'DB_USER_NAME':'',
+    'DB_USER_PASS':''
 
 }
