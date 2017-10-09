@@ -160,7 +160,7 @@ app.get('/robot/start',function(req,resp,next)
         }
 
 
-        roundCntr.startRound(); //to set flag to allow runRound
+	roundCntr.startRound(); //to set flag to allow runRound
 	roundCntr.runRound();
 	resp.send({'data':'Robots have been scheduled for start!'});
 	setTimeout(emit,2000);
@@ -311,12 +311,18 @@ io.on('connection',function(socket)
 	socket.on('disconect',function(data){totalSessions--});
 	})
 
-function emit()
+function emit(eventName)
 	{
-	API().roundCurrent(function(err,round)
+	if (eventName!='refreshRoundList')
 		{
-		io.emit('currentRound',round);
-		});
+		API().roundCurrent(function(err,round)
+            {
+			io.emit('currentRound',round);
+            });
+		return false;
+		}
+
+	io.emit('refreshRoundList');
 	}
 
 server.listen(config['PORT']);

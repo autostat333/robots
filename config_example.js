@@ -8,6 +8,8 @@ module.exports = {
     'ATTEMPTS':10, //number of attempts for resending the requests to proxy and robot
     'SECRET':'andrii',
     'DB_USER_NAME':'',
-    'DB_USER_PASS':''
+    'DB_USER_PASS':'',
+    'PROXY_USER':'',  //user and password for proxy access
+    'PROXY_PASS':''
 
 }

@@ -12,6 +12,7 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
     $scope.broadcastRoundId = broadcastRoundId;
     $scope.startSocket = startSocket;
     $scope.logOut = logOut;
+    $scope.transformCurrentRound = transformCurrentRound;
 
     $scope.init();
 
@@ -41,11 +42,30 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
         $scope.socket = socketIo.getSocket();
         $scope.socket.on('currentRound',function(newRound)
             {
-            var round = $scope.ROUNDS.data[0]//filter(function(el){return el['roundId']==newRound['roundId']})[0];
-            $scope.transformRound(newRound);
-            $.extend(round,newRound);
+            //var round = $scope.ROUNDS.data;
+            var round = $scope.ROUNDS.data.filter(function(el){return el['roundId']==newRound['roundId']});
+            //if new round (means current -> should be pushed)
+            if (!round.length)
+                {
+                var current = $scope.transformCurrentRound(newRound);
+                $scope.currentRound = current;
+                $scope.ROUNDS.data = $scope.ROUNDS.data.map($scope.transformRound);//refresh rounds (remove current from non current in fact)
+                $scope.ROUNDS.data.unshift(current);
+                $rootScope.$broadcast('roundsRefreshed');
+                return false;
+                }
+
+            newRound = $scope.transformCurrentRound(newRound);
+            $.extend(round[0],newRound);
             $rootScope.$broadcast('roundsRefreshed');
             });
+
+        /*for refreshing after changing in rounds (run new round)
+        $scope.$on('refreshRoundList',function()
+            {
+            $scope.sendAjax();
+            })
+        */
         }
 
 
@@ -119,16 +139,25 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
         }
 
 
+    function transformCurrentRound(round)
+        {
+        round = $scope.transformRound(round);
+        if (round['dateStr']!='-')
+            round['dateStr']+=' CURRENT';
+        else
+            round['dateStr']='CURRENT (ROBOT NOT STARTED)';
+
+        return round;
+
+
+        }
+
     function getCurrentRound()
         {
         return $backend.getCurrentRound().then(function(response)
             {
             if (response.Error) return false;
-            $scope.currentRound = $scope.transformRound(response.data);
-            if ($scope.currentRound['dateStr']!='-')
-                $scope.currentRound['dateStr']+=' CURRENT';
-            else
-                $scope.currentRound['dateStr']='CURRENT (ROBOT NOT STARTED)';
+            $scope.currentRound = $scope.transformCurrentRound(response.data);
             })
         }
 

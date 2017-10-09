@@ -71,7 +71,8 @@ module.exports = function RoundCntr(db,injector,emit)
 
     function runRound()
         {
-
+        //!!!in UI you can not push two time start robot
+        //it is not possible (theoretically) two time runRound with current round
         //finish round if mainRound is not empty and round does not have status "Waiting for Start Round"
         if ($scope.round['status']!='Waiting For Start ROBOT')
             {
@@ -90,7 +91,8 @@ module.exports = function RoundCntr(db,injector,emit)
                         }
                     else
                         $scope.round['status'] = 'Waiting For Start ROBOT';
-                    emit(); //send current round by websocket
+                    //emit('refreshRoundList'); //send new list of rounds (to update UI)
+                    emit();
                     }
                 catch(err)
                     {
@@ -107,7 +109,8 @@ module.exports = function RoundCntr(db,injector,emit)
             //set future start time, with the first iteration will be setted real startTime
             $scope.round['willStart'] = (new Date())*1+config.ROUND_INTERVAL;
             setTimeout($scope.runIterations,config.ROUND_INTERVAL);
-            emit(); //send current round by websocket
+            //emit('refreshRoundList'); //send new list of Rounds to update UI
+            emit();
             }
 
         }
