@@ -21,7 +21,12 @@ module.exports = function baseTableCntr($scope,$backend)
     $scope.$watchGroup(['SELECTED_ROBOT["robotName"]','SELECTED_ROUND["roundId"]'],watcherRobotChange);
     //below watcher - is main watcher to refresh data after ROBOT || ROUND change
 
-    $scope.$on('roundsRefreshed',function(){$scope.getData()});
+    $scope.$on('roundsRefreshed',function()
+	{
+	if ($scope.SELECTED_ROUND['dateStr'].indexOf('CURRENT')==-1) return false;
+	$scope.getData()
+
+	});
 
     //$scope.init();
 

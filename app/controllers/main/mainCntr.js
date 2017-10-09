@@ -13,6 +13,7 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
     $scope.startSocket = startSocket;
     $scope.logOut = logOut;
     $scope.transformCurrentRound = transformCurrentRound;
+    $scope.getSessionsNumber = getSessionsNumber;
 
     $scope.init();
 
@@ -73,10 +74,12 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
     function sendAjax()
         {
         $scope.spinner = 'global';
+	
+	$scope.getSessionsNumber();
 
         $q.all([
             $scope.getAllRounds(),
-            $scope.getCurrentRound()
+            $scope.getCurrentRound(),
             ]).then(function()
                 {
                 $scope.spinner = false;
@@ -88,6 +91,20 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
 
         }
 
+
+    function getSessionsNumber()
+	{
+	$backend.getSessionsNumber().then(function(response)
+		{
+		if (response.Error)
+			{
+			$scope.sessionsNumber = '-';
+			return false;
+			}
+		$scope.sessionsNumber = response.data.totalSessions;
+		})
+		
+	}
 
 
     function broadcastRoundId()

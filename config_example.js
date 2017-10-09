@@ -9,6 +9,7 @@ module.exports = {
     'SECRET':'andrii',
     'DB_USER_NAME':'',
     'DB_USER_PASS':'',
+    'SOCKET_URL':'crawlers.top', //url for establish ws connection
     'PROXY_USER':'',  //user and password for proxy access
     'PROXY_PASS':''
 

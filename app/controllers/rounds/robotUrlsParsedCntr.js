@@ -13,7 +13,7 @@ module.exports = function robotsUrlsParsedCntr($scope,$backend,$controller)
     $scope.init();
 
 
-    if ($scope.ROUNDS.data.length!=0) $scope.$parent.selectedRoundId = $scope.ROUNDS.data[0]['roundId'];
+   // if ($scope.ROUNDS.data.length!=0) $scope.$parent.selectedRoundId = $scope.ROUNDS.data[0]['roundId'];
 
     function initSortingOptions()
         {

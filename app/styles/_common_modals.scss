@@ -60,6 +60,7 @@ md-dialog[role=alertdialog], md-dialog.confirmdialog
 			background:$error;
 			color:white !important;
 			line-height:50px;
+			margin:0px;
 			}
 			
 		p{color:gray;}
@@ -111,9 +112,9 @@ md-dialog.confirmdialog
 //customization alert
 md-dialog[role=alertdialog]
 	{
-	button:focus,button
+	button:focus, button
 		{
-		margin:0px;
+		margin:0px !important;
 		background:lighten($error,10%) !important;
 		}
 	}

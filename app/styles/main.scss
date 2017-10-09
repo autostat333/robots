@@ -56,7 +56,7 @@
 
     .menu_items
       {
-      width:calc(100% - 320px - 320px);
+      width:calc(100% - 320px - 320px - 100px);
       padding:7px;
       text-aling:center;
       a.item
@@ -91,6 +91,35 @@
 
       }
 
+
+    .sessions
+	{
+	width:100px;
+	height:100%;
+
+
+        box-sizing:border-box;
+        padding:7px;
+        color:white;
+        text-align:center;
+
+       .line_center
+          {
+	  flex-direction:column;
+          position:relative;
+
+	  div:nth-child(1)
+		{
+		font-size:22px;
+		}
+	  div:nth-child(2)
+		{
+		font-size:14px;
+		}
+          }
+
+ 
+	}
 
     .cur_date
       {

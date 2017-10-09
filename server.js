@@ -95,6 +95,18 @@ app.get('/',function(req,resp)
 	})
 
 
+
+app.get('/sessions',function(req,resp,next)
+	{
+	if (!req.USER)
+		{
+		resp.send({'data':'','Error':'User is not authenticated!'});
+		return false;	
+		}
+
+	resp.send({'data':{'totalSessions':totalSessions}});
+	})
+
 app.post('/api/login',function(req,resp,next)
 	{
 	accountCntr().login(req.body,function(err,res)
@@ -305,8 +317,6 @@ io.use(function(socket, next){
 var totalSessions = 0;
 io.on('connection',function(socket)
 	{
-
-
 	totalSessions++;
 	socket.on('disconect',function(data){totalSessions--});
 	})

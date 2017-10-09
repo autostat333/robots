@@ -1,4 +1,4 @@
-module.exports = function config($stateProvider,$urlRouterProvider,$httpProvider)
+module.exports = function config($stateProvider,$urlRouterProvider,$httpProvider,$mdDialogProvider)
     {
 
     $httpProvider.interceptors.push(['$injector',function($injector)
@@ -29,6 +29,64 @@ module.exports = function config($stateProvider,$urlRouterProvider,$httpProvider
 
             }
         }])
+
+
+
+
+
+
+	//common OK modal preset
+	$mdDialogProvider.addPreset('okPopup', {
+		methods:['title'],
+		
+		options: function() {
+			
+			function confirmModalCntr($mdDialog)
+					{
+					this.hide = function(){$mdDialog.hide();}
+					};
+					
+			confirmModalCntr.$inject = ['$mdDialog'];
+			
+			return { 
+				template:
+					'<md-dialog'+
+					'	class="_md md-default-theme md-transition-in confirmdialog"'+
+					'	tabindex="-1"'+
+					'	role="alertdialog"'+
+					'	>'+
+					'	<md-dialog-content '+
+					'		class="md-dialog-content" '+
+					'		tabindex="-1" '+
+					'		>'+
+					'	<h2 class="md-title ng-binding">{{dialog.title}}</h2>'+
+					'	</md-dialog-content>'+
+					'	'+
+					'	<md-dialog-actions>'+
+					'	<button '+
+					'		class="md-primary md-confirm-button md-button md-autofocus md-ink-ripple md-default-theme"'+
+					'		type="button"'+
+					'		ng-click="dialog.hide()" '+
+					'		>'+
+					'		<span>ОК</span>'+
+					'	</button>	'+
+					'	</md-dialog-actions>'+
+					''+
+					'</md-dialog>',
+
+				controllerAs: 'dialog',
+				clickOutsideToClose: true,
+				escapeToClose: true,
+				controller:confirmModalCntr,
+				bindToController:true,
+				multiple:true
+				};
+			}
+		});
+	
+
+
+
 
 
     $urlRouterProvider.when('','/')
@@ -109,6 +167,6 @@ module.exports = function config($stateProvider,$urlRouterProvider,$httpProvider
 
 
     }
-module.exports.$inject = ['$stateProvider','$urlRouterProvider','$httpProvider'];
+module.exports.$inject = ['$stateProvider','$urlRouterProvider','$httpProvider','$mdDialogProvider'];
 
 

@@ -7,6 +7,12 @@ module.exports = function run($rootScope,$state)
     else
         $rootScope.USER = false;
 
+
+
+
+	
+
+
     $rootScope.$on('$stateChangeStart',function(e,toState, toParams, fromState, fromParams, options)
         {
         if (!$rootScope.USER&&toState.name!='login')

@@ -47,9 +47,9 @@ module.exports = function reportsCntr($scope,$backend,$q,$filter,$log,$mdDialog,
             if (response.data)
                 {
                 $mdDialog.show($mdDialog
-                    .alert()
+                    .okPopup()
                     .title(response.data)
-                    .ok('OK'))
+		    )
                 }
 
             })
@@ -64,9 +64,9 @@ module.exports = function reportsCntr($scope,$backend,$q,$filter,$log,$mdDialog,
             if (response.data)
                 {
                 $mdDialog.show($mdDialog
-                    .alert()
+                    .okPopup()
                     .title(response.data)
-                    .ok('OK'))
+		    )
                 }
             })
         }

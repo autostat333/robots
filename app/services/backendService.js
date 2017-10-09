@@ -166,6 +166,31 @@ module.exports = function backendService($q,$http,$mdDialog)
         }
 
 
+    this.getSessionsNumber = function()
+        {
+        var defer = $q.defer();
+        $http.get('/sessions').then(function(response)
+            {
+            response = response.data;
+            if (response.Error)
+                {
+                errorHandle('Something bad when trying to get the number of sessions!',{'message':response.Error}).then(function()
+                    {
+                    defer.resolve(response);
+                    });
+                return false;
+                }
+            defer.resolve(response);
+            },function(err)
+            {
+            errorHandle('Something bad has hapened when run /sessions',err)
+                .then(function(){defer.resolve({'Error':err});});
+            })
+        return defer.promise;
+        }
+
+
+
 
     this.getErrors = function(roundId,params)
         {

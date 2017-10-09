@@ -7,7 +7,7 @@ module.exports = function socketIo()
 
     this.start = function()
         {
-        socket = io.connect('http://'+config['DOMAIN']+':'+config['PORT']+'/');
+        socket = io.connect('http://'+config['SOCKET_URL']);
         }
 
 
