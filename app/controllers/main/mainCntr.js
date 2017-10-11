@@ -36,6 +36,10 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
 
         }
 
+    $scope.$on('$destroy',function()
+        {
+        $scope.socket.destroy();
+        })
 
     function startSocket()
         {
@@ -60,6 +64,11 @@ module.exports = function mainCntr($scope,$interval,$timeout,$filter,$backend,$q
             $.extend(round[0],newRound);
             $rootScope.$broadcast('roundsRefreshed');
             });
+
+        $scope.socket.on('refreshSessions',function()
+            {
+            $scope.getSessionsNumber();
+            })
 
         /*for refreshing after changing in rounds (run new round)
         $scope.$on('refreshRoundList',function()

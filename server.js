@@ -318,17 +318,28 @@ var totalSessions = 0;
 io.on('connection',function(socket)
 	{
 	totalSessions++;
-	socket.on('disconect',function(data){totalSessions--});
+	emit('refreshSessions');
+	socket.on('disconnect',function(data)
+		{
+		totalSessions--;
+		emit('refreshSessions')
+		});
 	})
 
 function emit(eventName)
 	{
-	if (eventName!='refreshRoundList')
+	if (!eventName)
 		{
 		API().roundCurrent(function(err,round)
             {
 			io.emit('currentRound',round);
             });
+		return false;
+		}
+
+	if (eventName=='refreshSessions')
+		{
+		io.emit('refreshSessions');
 		return false;
 		}
 
